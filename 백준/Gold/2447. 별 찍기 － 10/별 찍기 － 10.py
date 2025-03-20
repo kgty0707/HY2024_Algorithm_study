@@ -1,3 +1,4 @@
+import math
 import sys
 
 def star(num):
@@ -9,18 +10,17 @@ def star(num):
     new_pattern = []
 
     for line in prev_pattern:
-        new_pattern.append(line * 3)
+        new_pattern.append(line + line + line)
 
     for line in prev_pattern:
         new_pattern.append(line + " " * size + line)
 
     for line in prev_pattern:
-        new_pattern.append(line * 3)
+        new_pattern.append(line + line + line)
 
     return new_pattern
 
-
-n = int(sys.stdin.readline().strip())
+n = int(input())
 
 num = 0
 temp = n
@@ -31,4 +31,5 @@ while temp > 1:
     num += 1
 
 result = star(num)
-print("\n".join(result))
+result = "\n".join(result)
+print(result)
