@@ -20,12 +20,12 @@ for v in graph:
     graph[v].sort()
 
 # DFS
-# def dfs(v, visited):
-#     visited[v] = True
-#     # print(v, end=' ')
-#     for neighbor in graph[v]:
-#         if not visited[neighbor]:
-#             dfs(neighbor, visited)
+def dfs(v, visited):
+    visited[v] = True
+    # print(v, end=' ')
+    for neighbor in graph[v]:
+        if not visited[neighbor]:
+            dfs(neighbor, visited)
 
 # BFS
 def bfs(start, visited):
