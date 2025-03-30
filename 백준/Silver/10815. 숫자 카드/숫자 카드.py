@@ -17,13 +17,13 @@ for target in check:
     label = False
     while start <= end:
         mid = (start + end) // 2
-        data = cards[mid]
+        # data = cards[mid]
 
-        if data == target:
+        if cards[mid] == target:
             label = True
             result.append(1)
             break
-        elif data > target:
+        elif cards[mid] > target:
             end = mid - 1
 
         else:
@@ -34,3 +34,4 @@ for target in check:
 
 
 print(*result)
+    
