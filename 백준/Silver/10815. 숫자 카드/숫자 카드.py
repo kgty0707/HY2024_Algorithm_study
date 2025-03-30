@@ -1,6 +1,6 @@
 def binary_search(arr, target):
     start = 0
-    end = len(arr) - 1
+    end = N - 1
     while start <= end:
         mid = (start + end) // 2
         if arr[mid] == target:
@@ -21,5 +21,7 @@ cards.sort()
 M = int(sys.stdin.readline())
 check = list(map(int, sys.stdin.readline().split()))
 
-result = [binary_search(cards, target) for target in check]
+result = []
+for target in check:
+    result.append(binary_search(cards, target))
 print(*result)
