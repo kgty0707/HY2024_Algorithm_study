@@ -9,10 +9,7 @@ def search_for_minimum_time(a, num):
     min_time = 0
     wait_time = 0
     for i in range(num):
-        if wait_time:
-            wait_time = wait_time + a[i]
-        else:
-            wait_time = a[i]
+        wait_time = wait_time + a[i]
         min_time += wait_time
     return min_time
 
