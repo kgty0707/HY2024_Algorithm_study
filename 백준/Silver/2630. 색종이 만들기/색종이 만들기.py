@@ -1,3 +1,5 @@
+import sys
+
 white = 0
 blue = 0
 
@@ -15,7 +17,6 @@ def make_confetti(two_array_list):
         return
     
     else:
-        # 두 배열을 반으로 나누기
         if y_end_index % 2 == 0:
             y_end_index = int(y_end_index / 2)
         else:
@@ -38,10 +39,10 @@ def make_confetti(two_array_list):
 
 
 two_array_list = []
-size = int(input().strip())
+size = int(sys.stdin.readline().rstrip())
 
 for i in range(size):
-   array = list(map(int, input().split()))
+   array = list(map(int, sys.stdin.readline().rstrip().split()))
    two_array_list.append(array)
 
 make_confetti(two_array_list)
