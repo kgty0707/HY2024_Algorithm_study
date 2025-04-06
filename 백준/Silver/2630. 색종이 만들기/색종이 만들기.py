@@ -3,49 +3,35 @@ import sys
 white = 0
 blue = 0
 
-def make_confetti(two_array_list):
+def make_confetti(size, y, x):
     global white, blue
-    y_end_index = len(two_array_list) - 1
-    x_end_index = len(two_array_list[0]) - 1
+    color = two_array_list[y][x]
+    same_flag = True
 
-    if all(all(cell == 0 for cell in row) for row in two_array_list):
-        white += 1
-        return
-    
-    elif all(all(cell == 1 for cell in row) for row in two_array_list):
-        blue += 1
-        return
-    
+    for i in range(y, y + size):
+        for j in range(x, x + size):
+            if two_array_list[i][j] != color:
+                same_flag = False
+                break
+        if not same_flag:
+            break
+
+    if same_flag:
+        if color == 0:
+            white += 1
+        else:
+            blue += 1
     else:
-        if y_end_index % 2 == 0:
-            y_end_index = int(y_end_index / 2)
-        else:
-            y_end_index = int(y_end_index / 2) + 1
+        half = size // 2
+        make_confetti(half, y, x)               # 왼쪽 위
+        make_confetti(half, y, x + half)        # 오른쪽 위
+        make_confetti(half, y + half, x)        # 왼쪽 아래
+        make_confetti(half, y + half, x + half) # 오른쪽 아래
 
-        if x_end_index % 2 == 0:
-            x_end_index = int(x_end_index / 2)
-        else:
-            x_end_index = int(x_end_index / 2) + 1
+size = int(sys.stdin.readline())
+two_array_list = [list(map(int, sys.stdin.readline().split())) for _ in range(size)]
 
-        first_half = [row[:x_end_index] for row in two_array_list[:y_end_index]]
-        second_half = [row[x_end_index:] for row in two_array_list[:y_end_index]]
-        third_half = [row[:x_end_index] for row in two_array_list[y_end_index:]]
-        fourth_half = [row[x_end_index:] for row in two_array_list[y_end_index:]]
-    
-        make_confetti(first_half)
-        make_confetti(second_half)
-        make_confetti(third_half)
-        make_confetti(fourth_half)
+make_confetti(size, 0, 0)
 
-
-two_array_list = []
-size = int(sys.stdin.readline().rstrip())
-
-for i in range(size):
-   array = list(map(int, sys.stdin.readline().rstrip().split()))
-   two_array_list.append(array)
-
-make_confetti(two_array_list)
-
-print(white) 
+print(white)
 print(blue)
