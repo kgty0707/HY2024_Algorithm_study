@@ -12,8 +12,6 @@ def dfs(node, graph, visited, parent):
 node = int(input())
 graph = [[] for _ in range(node+1)]
 
-# print(graph)
-
 visited = [False] * (node+1)
 parent = [0] * (node+1)
 
@@ -22,7 +20,6 @@ for _ in range(node-1):
     graph[node_1].append(node_2)
     graph[node_2].append(node_1)
 
-# print(graph)
 dfs(1, graph, visited, parent)
 
 for i in range(2, node + 1):
