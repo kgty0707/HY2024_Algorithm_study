@@ -1,32 +1,39 @@
-import sys
+M, N, B, W = map(int, input().split())
 
-input = sys.stdin.readline
-
-M, N, K, W = map(int, input().split())
-
-A = []
+PICTURE = []
 for _ in range(M):
-    row = list(map(int, input().split()))
-    A.append(row)
+    ary = list(map(int, input().split()))
+    PICTURE.append(ary)
 
-median_index = (W * W) // 2
+# print(PICTURE)
+# print(PICTURE[0])
+# print(PICTURE[0:1][0])
+# print(PICTURE[0:1])
 
-B = []
+B_MATRIX = []
+MEDIAN_INDEX = int(((W**2+1) / 2) - 1)
+# print(f"MEDIAN_INDEX: {MEDIAN_INDEX}")
 
-for i in range(M - W + 1):
-    b_row = []
-    for j in range(N - W + 1):
-        window_1d = []
-        for row_index in range(i, i + W):
-            for col_index in range(j, j + W):
-                window_1d.append(A[row_index][col_index])
+def calculate_median(matrix):
+    # ★★★★★★★★★★★★★★★★★★★★★
+    # flattened_array = sum(matrix, []) 
+    flattened_array = [item for row in matrix for item in row]
 
-        window_1d.sort()
-        median_value = window_1d[median_index]
-        
-        b_row.append(median_value)
-    
-    B.append(b_row)
+    # print(flattened_array)
+    flattened_array.sort()
+    median_value = flattened_array[MEDIAN_INDEX]
+    return median_value
 
-for row in B:
-    print(*row)
+result = []
+for i in range(M-W+1):
+    ary = []
+    for j in range(N-W+1):
+        # ★★★★★★★★★★★★★★★★★★★★★
+        window = [row[j:j+W] for row in PICTURE[i:i+W]]
+        # print(window)
+        median = calculate_median(window)
+        ary.append(median)
+    print(*ary)
+    result.append(ary)
+
+# print(result)
